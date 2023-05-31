@@ -45,7 +45,7 @@ const Navbar = () => {
             </div>
           </Link>
         <Link onClick={()=>
-            setIsMenuOpen(false)} to="/discuss" className="navbar-button">
+            setIsMenuOpen(false)} to="/blogs" className="navbar-button">
           
           <div className="hidden md:flex space-x-4">
         <div className="w-40 h-12 bg-gray-800 rounded-full flex items-center justify-center  cursor-pointer hover:bg-slate-700 gap-1">
@@ -101,7 +101,7 @@ const Navbar = () => {
             </Link>
           
               <Link onClick={()=>
-            setIsMenuOpen(false)}  to="/discuss" className="w-full flex items-center space-x-2 px-4 py-2 hover:bg-gray-800 rounded-lg">
+            setIsMenuOpen(false)}  to="/blogs" className="w-full flex items-center space-x-2 px-4 py-2 hover:bg-gray-800 rounded-lg">
                 <FaMicroblog className="text-white" />
                 <span>Blogs</span>
             
