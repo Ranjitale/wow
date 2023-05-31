@@ -103,7 +103,7 @@ const Navbar = () => {
               <Link onClick={()=>
             setIsMenuOpen(false)}  to="/blogs" className="w-full flex items-center space-x-2 px-4 py-2 hover:bg-gray-800 rounded-lg">
                 <FaMicroblog className="text-white" />
-                <span>Blogs</span>
+                <span>Blogs </span>
             
             </Link>
             
