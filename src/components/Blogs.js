@@ -1,38 +1,68 @@
-import React from 'react';
+import { Tab } from '@headlessui/react';
+import { collection, getDocs } from 'firebase/firestore';
+import { db } from './firebase';
+// import { formatDistanceToNow } from 'date-fns';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-const blogPosts = [
-  {
-    title: '#1',
-    imgSrc:"https://www.alleycat.org/wp-content/uploads/2019/03/FELV-cat.jpg",
-    author: 'Ranjit Ale',
-    content: 'How to make website with your name as a domain and free hosting.',
-    datePosted: 'May 20, 2023',
-  },
-  {
-    title: "#2",
-    imgSrc:"https://www.cdc.gov/healthypets/images/pets/cute-dog-headshot.jpg?_=42445",
-    author: 'Sunil  Mahata',
-    content: 'Why resistance increases with increase in temperature?',
-    datePosted: 'May 25, 2023',
-  },
-  // Add more blog posts as needed
-];
 
-const Blogs = () => {
+export default function Blogs() {
+  const [blogs, setBlogs] = useState(null);
+
+
+  useEffect(() => {
+    const fetchNotes = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, 'blogs'));
+        const blogsArray = querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setBlogs(blogsArray);
+      } catch (error) {
+        console.error('Error fetching notes:', error);
+      }
+    };
+    
+    fetchNotes();
+  }, []);
+  if (!blogs) {
+    return <div className='mx-auto text-center
+    font-meroFont text-5xl text-blue-500'>Loading...</div>;
+  
+  }
+
   return (
-    <div className="container mx-auto py-8 ">
-      <h1 className="text-3xl font-bold mb-4">Blogs From <Link to="/">Infinity.zero</Link></h1>
-      {blogPosts.map((post, index) => (
-        <div key={index} className="mb-8 bg-fuchsia-200 p-10 h-auto rounded-xl">
-          <h2 className="text-xl font-bold">{post.title}</h2>
-          <Link to='/'><img src={post.imgSrc} className='w-9 h-9 rounded-full' alt='Author ko Charitra'></img></Link>
-          <p className="text-gray-500 mb-2">By {post.author}</p>
-          <p className="text-gray-700">{post.content}</p>
-          <p className="text-gray-500 mt-2">Posted on {post.datePosted}</p>
-        </div>
-      ))}
-    </div>
-  );
-};
+    <div className="w-full font-meroFont text-gray-700 mx-auto max-w-md px-2 py-16 sm:px-0">
+      <Tab.Group>
+        <Tab.List className="flex space-x-1 rounded-xl bg-blue-900/20 p-1"></Tab.List>
+        <div>
+          {blogs.map((note) => 
+            
+            (
+              <div key={note.id} className="bg-white rounded-lg shadow-lg p-6 mb-6">
+              
+                <Link to={`/blogs/${note.id}`}>
+                  <h2 className="text-2xl font-bold mb-4">{note.title}</h2>
+                  <div className=" justify-between items-center mb-4">
+                    <div className='flex '>
+                  
+                      <img src='https://static.vecteezy.com/system/resources/thumbnails/009/734/564/small/default-avatar-profile-icon-of-social-media-user-vector.jpg' alt='author' width={50} height={50}></img><p className="text-gray-600 relative text-sm top-4 font-myFont">By {note.author}</p>
+                    </div>
+                  <br></br>
+                  <p className="font-myFont">
+                   {note.content}...
+                   <span className="text-blue-500">
+                   <em>See More</em>
+                   </span>
+                   </p>
 
-export default Blogs;
+                  {/* <p>{formatDistanceToNow(note.createdAt.seconds-new Date(),{addSuffix:true})}</p>*/}
+                   </div>
+                </Link>
+              </div>
+            ))}
+        </div>
+      </Tab.Group>
+    </div>
+          );
+}

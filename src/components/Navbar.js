@@ -1,6 +1,6 @@
 
 import React from 'react';
-
+import { useEffect,useRef } from 'react';
 
 import { Link } from 'react-router-dom';
 import { FiHome } from 'react-icons/fi';
@@ -8,19 +8,33 @@ import { FaBook, FaMicroblog, FaUserAlt } from 'react-icons/fa';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const menuRef = useRef(null)
 
   const toggleMenu = () => {
       setIsMenuOpen(!isMenuOpen);
       
   };
-  
-  // function toggleMenu() {
-  //   setIsMenuOpen(!isMenuOpen);
-  // }
+  useEffect(() => {
+    // Function to handle the click event outside the menu
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setIsMenuOpen(false);
+      }
+    };
 
+    // Attach the event listener when the menu is open
+    if (isMenuOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    // Clean up the event listener when the component is unmounted or the menu is closed
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isMenuOpen]);
 
   return (
-    <nav className="font-myFont flex justify-around items-center py-4 px-8 bg-customColor text-white">
+    <nav ref={menuRef} className="font-myFont flex justify-around items-center py-4 px-8 bg-customColor text-white">
 
       <div>
         <div className="flex items-center space-x-2">

@@ -4,11 +4,10 @@ import { GoogleAuthProvider, onAuthStateChanged, signInWithPopup, signOut } from
 import {auth} from '../firebase'
 const AuthContext = createContext();
 export const AuthContextProvider = ({ children }) => {
-    const [user,setUser]=useState({})
-    useEffect(() => {
+    const [user, setUser] = useState({})
+     useEffect(() => {
         const random = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser)
-            console.log(user)
             
 
             
@@ -23,6 +22,7 @@ export const AuthContextProvider = ({ children }) => {
     const signout = () => {
         signOut(auth)
     }
+    
     return (
         <AuthContext.Provider value={{googleSignin,user,setUser,signout}}>
             {children}

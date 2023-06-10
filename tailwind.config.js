@@ -7,10 +7,12 @@ module.exports = {
     extend: {
       colors: {
         customColor: '#111D33',
-        buttonColor:"#38BDF8"
+        buttonColor: "#38BDF8",
+        bgColor:"rgb(19,25,57)"
       },
       fontFamily: {
         myFont: ['Poppins', 'sans-serif'],
+        meroFont:['Fredoka', "sans-serif"]
         // Add more font families as needed
       },
     },

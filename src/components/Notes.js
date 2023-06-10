@@ -1,124 +1,68 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
-import { Tab } from '@headlessui/react'
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
-}
+import { Tab } from '@headlessui/react';
+import { collection, getDocs } from 'firebase/firestore';
+import { db } from './firebase';
+// import { addDoc, collection } from "firebase/firestore"; 
+
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 export default function Notes() {
-  let [categories] = useState({
-    Recent: [
-      {
-        id: 1,
-        title: 'Institute of Engineering Hard?',
-        date: '1h ago',
-        commentCount: 0,
-        shareCount: 0,
-      },
-      {
-        id: 2,
-        title: "So you've Decided what?",
-        date: '2h ago',
-        commentCount: 3,
-        shareCount: 2,
-      },
-    ],
-    Popular: [
-      {
-        id: 1,
-        title: 'Is CSIT better than IOE ?',
-        date: 'Jan 7',
-        commentCount: 29,
-        shareCount: 16,
-      },
-      {
-        id: 2,
-        title: 'The most innovative things happening in Nepal',
-        date: 'Mar 19',
-        commentCount: 24,
-        shareCount: 12,
-      },
-    ],
-    Trending: [
-      {
-        id: 1,
-        title: 'Ask Me Anything: 10 answers to your questions about Us',
-        date: '2d ago',
-        commentCount: 9,
-        shareCount: 5,
-      },
-      {
-        id: 2,
-        title: "The worst advice we've ever heard about Life",
-        date: '4d ago',
-        commentCount: 1,
-        shareCount: 2,
-      },
-    ],
-  })
+  const [notes, setNotes] = useState([])
+  
+  useEffect(() => {
+    const fetchNotes = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, 'notes'));
+        const notesArray = querySnapshot.docs.map((doc) => doc.data());
+        console.log(notesArray)
+        setNotes(notesArray);
+        
+      } catch (error) {
+        console.error('Error fetching notes:', error);
+      }
+    };
+  
+    fetchNotes();
+  }, []);
+
 
   return (
+    <>
+    <hr></hr>
     <div className="w-full mx-auto max-w-md px-2 py-16 sm:px-0">
       <Tab.Group>
-        <Tab.List className="flex space-x-1 rounded-xl bg-blue-900/20 p-1">
-          {Object.keys(categories).map((category) => (
-            <Tab
-              key={category}
-              className={({ selected }) =>
-                classNames(
-                  'w-full rounded-lg py-2.5 text-sm font-medium leading-5 text-blue-700',
-                  'ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2',
-                  selected
-                    ? 'bg-white shadow'
-                    : 'text-blue-100 hover:bg-white/[0.12] hover:text-white'
-                )
-              }
-            >
-              {category}
-            </Tab>
+       
+        <div>
+          {notes.map((note) => (
+            
+      
+            <div key={note.id} className="bg-white rounded-lg shadow-lg p-6 mb-6">
+              <Link to={`/notes/${note.id}`}>
+      <h2 className="text-2xl font-bold mb-4">{note.Title}</h2>
+      <div className="flex justify-between items-center mb-4">
+        <p className="text-gray-600 text-sm">
+          {} {note.comments>1000000?`${note.comments/1000000}M ${note.comment===1?"comment":"comments"}`:note.comments}
+        </p>
+                  <p className="text-gray-600 text-sm">
+                    {
+                      
+                    }
+          {note.shares} {note.shares === 1 ? 'Share' : 'Shares'}
+        </p>
+      </div>
+      
+                <p className="text-gray-500 text-xs mb-2">Published on {new Date(note.createdAt.seconds*1000).toLocaleTimeString()+" at "+new Date(note.createdAt.seconds*1000).toLocaleDateString()}</p>
+              </Link>
+              
+            </div>
           ))}
-        </Tab.List>
-        <Tab.Panels className="mt-2">
-          {Object.values(categories).map((posts, idx) => (
-            <Tab.Panel
-              key={idx}
-              className={classNames(
-                'rounded-xl bg-white p-3',
-                'ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2'
-              )}
-            >
-              <ul>
-                {posts.map((post) => (
-                  <li
-                    key={post.id}
-                    className="relative rounded-md p-3 hover:bg-gray-100"
-                  >
-                    <h3 className="text-sm font-medium leading-5">
-                      {post.title}
-                    </h3>
-
-                    <ul className="mt-1 flex space-x-1 text-xs font-normal leading-4 text-gray-500">
-                      <li>{post.date}</li>
-                      <li>&middot;</li>
-                      <li>{post.commentCount} comments</li>
-                      <li>&middot;</li>
-                      <li>{post.shareCount} shares</li>
-                    </ul>
-
-                    <Link to="/notes"
-                      className={classNames(
-                        'absolute inset-0 rounded-md',
-                        'ring-blue-400 focus:z-10 focus:outline-none focus:ring-2'
-                      )}
-                    />
-                  </li>
-                ))}
-              </ul>
-            </Tab.Panel>
-          ))}
-        </Tab.Panels>
+         
+  </div>
       </Tab.Group>
-    </div>
-  )
+      
+      </div>
+      </>
+  );
 }
+
