@@ -13,9 +13,9 @@ const Home = () => {
 
     return (
       <>
-    <div className="flex items-centermx-auto justify-center h-80 py-6 bg-gray-100">
-      <div className="max-w-md p-6 bg-white rounded-lg shadow-md">
-        <h1 className="text-4xl font-bold text-purple-700 mb-3 font-myFont ">
+    <div className="flex items-centermx-auto justify-center h-80 py-6 bg-gray-200">
+      <div className="max-w-md p-6 border-yellow-100 bg-wow rounded-lg shadow-md">
+        <h1 className="text-4xl font-bold text-purple-700 mb-3 font-meroFont ">
           Hello, World !!
         </h1>
         <Transition
@@ -26,14 +26,14 @@ const Home = () => {
         >
           {() => (
             <p
-              className="text-green-600 text-lg mb-4 font-semibold"
+              className="text-green-600 text-3xl mb-4 font-semibold font-meroFont"
             >
-              This is CS10. We are here to assist you ? How may we help you ? </p>
+              Get started with infinity-zero in less than a minute...</p>
               )}
               
             </Transition>
             <button className='bg-buttonColor text-white px-2 rounded-lg font-semibold py-2
-          '><Link to="/blogs">Get started</Link></button>
+          '><Link to="/blogs" className=' focus:text-red-700 focus:w-3 focus:h-3'>Get started</Link></button>
           </div>
          
     </div>

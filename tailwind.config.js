@@ -8,7 +8,8 @@ module.exports = {
       colors: {
         customColor: '#111D33',
         buttonColor: "#38BDF8",
-        bgColor:"rgb(19,25,57)"
+        bgColor: "rgb(19,25,57)",
+        wow:"#1D1A27"
       },
       fontFamily: {
         myFont: ['Poppins', 'sans-serif'],

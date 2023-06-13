@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState} from 'react';
 import { AiOutlineSearch } from 'react-icons/ai';
-
+import { useNavigate } from "react-router-dom";
 import { db } from './firebase';
-
+import {  getDocs, collection, where, query } from "firebase/firestore"; 
 
 const Search = () => {
   const [q, setQuery] = useState('');
+  const [results, setResults] = useState(null)
+  const navigate = useNavigate(); // Get the navigate function from react-router-dom
 
   const handleChangeInput = (e) => {
     setQuery(e.target.value);
@@ -14,24 +16,27 @@ const Search = () => {
   const handleSearch = async (event) => {
     event.preventDefault();
 
-    const fetchBlogs = async () => {
-      try {
- 
-        db.collection('blogs')
-    .get()
-    .then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        console.log(doc.id, ' => ', doc.data());
-      });
+    const collection_ref = collection(db, 'blogs')
+    const searchedQuery = query(collection_ref, where("title", ">=", q), where("title", "<=", `${q}\uf8ff`))
+    const doc_refs = await getDocs(searchedQuery)
+
+    const res = []
+
+    doc_refs.forEach(blog => {
+        res.push({
+            id: blog.id, 
+            ...blog.data()
+        })
     })
-    
-
-      } catch (error) {
-        console.error('Error fetching blogs:', error);
+    setResults(res)
+    console.log(results)
+    navigate.push({
+      pathname: '/results',
+      state: {
+        query: q,
+        results: res
       }
-    };
-
-    fetchBlogs();
+    });
   };
 
   return (
@@ -56,6 +61,7 @@ const Search = () => {
             </button>
           </div>
         </div>
+
       </div>
      
     </form>

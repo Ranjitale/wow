@@ -9,6 +9,8 @@ import Home from './components/Home';
 import Search from './components/Search';
 import Add from './components/Add';
 import BlogDetails from './components/BlogDetail';
+import NoteDetail from './components/NoteDetail';
+import Results from './components/results';
 
 function App() {
   return (
@@ -23,6 +25,8 @@ function App() {
           <Route path="/add" element={<Add />} />
           <Route path="/blogs" element={<Blogs />} />
           <Route path="/blogs/:id" element={<BlogDetails />} />
+          <Route path="/notes/:id" element={<NoteDetail />} />
+          <Route path='/results' element={<Results/>}></Route>
           <Route
             path="/*"
             element={

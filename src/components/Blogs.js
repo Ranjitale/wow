@@ -1,7 +1,7 @@
 import { Tab } from '@headlessui/react';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from './firebase';
-// import { formatDistanceToNow } from 'date-fns';
+import { formatDistanceToNow } from 'date-fns';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -55,8 +55,8 @@ export default function Blogs() {
                    <em>See More</em>
                    </span>
                    </p>
-
-                  {/* <p>{formatDistanceToNow(note.createdAt.seconds-new Date(),{addSuffix:true})}</p>*/}
+                  <div className='text-green-600'>{formatDistanceToNow(note.createdAt.seconds*1000,{addSuffix:true})}</div>
+                  
                    </div>
                 </Link>
               </div>

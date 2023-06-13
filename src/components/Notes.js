@@ -1,8 +1,8 @@
 
 import { Tab } from '@headlessui/react';
+import { formatDistanceToNow } from 'date-fns';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from './firebase';
-// import { addDoc, collection } from "firebase/firestore"; 
 
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -14,8 +14,10 @@ export default function Notes() {
     const fetchNotes = async () => {
       try {
         const querySnapshot = await getDocs(collection(db, 'notes'));
-        const notesArray = querySnapshot.docs.map((doc) => doc.data());
-        console.log(notesArray)
+        const notesArray = querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
         setNotes(notesArray);
         
       } catch (error) {
@@ -25,8 +27,11 @@ export default function Notes() {
   
     fetchNotes();
   }, []);
-
-
+  if (!notes) {
+    return <div className='mx-auto text-center
+    font-meroFont text-5xl text-blue-500'>Loading...</div>;
+  
+  }
   return (
     <>
     <hr></hr>
@@ -52,7 +57,7 @@ export default function Notes() {
         </p>
       </div>
       
-                <p className="text-gray-500 text-xs mb-2">Published on {new Date(note.createdAt.seconds*1000).toLocaleTimeString()+" at "+new Date(note.createdAt.seconds*1000).toLocaleDateString()}</p>
+                <p className="text-cyan-500 text-xs mb-2">{ formatDistanceToNow(note.createdAt.seconds*1000,{addSuffix:true},{locale:true})}</p>
               </Link>
               
             </div>
