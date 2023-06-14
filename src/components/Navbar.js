@@ -15,19 +15,19 @@ const Navbar = () => {
       
   };
   useEffect(() => {
-    // Function to handle the click event outside the menu
+   
     const handleClickOutside = (event) => {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
         setIsMenuOpen(false);
       }
     };
 
-    // Attach the event listener when the menu is open
+   
     if (isMenuOpen) {
       document.addEventListener("mousedown", handleClickOutside);
     }
 
-    // Clean up the event listener when the component is unmounted or the menu is closed
+    
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
@@ -37,7 +37,7 @@ const Navbar = () => {
     <nav ref={menuRef} className="font-myFont flex justify-around items-center py-4 px-8 bg-customColor text-white">
 
       <div>
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center">
           <div className="w-16 h-16 relative top-5 text-cyan-400">
           <Link to="/">Infinity.Zero</Link>
           </div>
@@ -45,7 +45,7 @@ const Navbar = () => {
       </div>
       <div className="hidden md:flex space-x-4 ">
         <div className="w-40 h-12 bg-gray-800 rounded-full flex items-center justify-center cursor-pointer hover:bg-slate-700">
-          <Link to='/' className='flex align-middle items-center gap-1'>
+          <Link to='/' className='flex justify-center items-center gap-1'>
             <span className=''>Home </span><FiHome className="" />
             </Link>
           </div>

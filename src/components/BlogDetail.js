@@ -34,15 +34,7 @@ const BlogDetails = () => {
   const formattedDate = formatDistanceToNow(createdDate*1000, { addSuffix: true });
 
   return ( 
-    // <div className='mx-auto bg-bgColor left-5-10 text-white font-myFont '>
-    //   <h2>{blog.Title}</h2>
-    //   <h3>By:{blog.author}</h3>
-      // <h4>{formattedDate}</h4>
     
-    //   <p>{blog.content}</p>
-    
-    // </div>
-    // );
     <div className="flex flex-col items-center bg-gradient-to-r bg-gray-500 min-h-screen">
       <div className="w-6 h-6 rounded-full mt-8">
         <img src='https://images.unsplash.com/photo-1624561261145-351e786934b9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80' alt="Profile" className="rounded-full w-16 h-6" />

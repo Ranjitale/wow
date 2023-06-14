@@ -10,7 +10,7 @@ const Results = () => {
     <div>
       
       
-        {results.map((note) => 
+      {results.length === 0 ? <div className='text-center text-purple-500 text-3xl'>Not found ...</div>:results.map((note) => 
           
           (
             <div key={note.id} className="bg-white rounded-lg shadow-lg p-6 mb-6">

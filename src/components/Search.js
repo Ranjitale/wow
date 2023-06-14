@@ -9,6 +9,7 @@ import { getDocs, collection, where, query } from 'firebase/firestore';
 const Search = () => {
   const navigate = useNavigate();
   const [q, setQuery] = useState('');
+  const [loading, setLoading] = useState(false);
   const [results, setResults] = useState([]);
 
   
@@ -17,6 +18,7 @@ const Search = () => {
   };
 
   const handleSearch = async (event) => {
+    setLoading(true);
     event.preventDefault();
 
     const collection_ref = collection(db, 'blogs');
@@ -32,11 +34,15 @@ const Search = () => {
     });
 
     setResults(res);
-    navigate(`/results?q=${encodeURIComponent(q)}`, { state: { results: results } });
-
+    navigate(`/search?q=${encodeURIComponent(q)}`, { state: { results: results } });
+    setLoading(false);
     
   };
-
+  if (!results) {
+    return <div className='mx-auto text-center
+    font-meroFont text-5xl text-blue-500'>Loading...</div>;
+  
+}
 
 
   return (
@@ -64,7 +70,9 @@ const Search = () => {
           </div>
         </div>
       </form>
-
+      {loading && (<div className="flex items-center justify-center mt-4">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-4 border-green-900"></div>
+        </div>)}
     </>
   );
 };

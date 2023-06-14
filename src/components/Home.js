@@ -1,4 +1,5 @@
 import React from 'react';
+import hlogo from '../img/react-components-library-1024x512.png'
 import { Transition } from '@headlessui/react';
 import { Disclosure } from '@headlessui/react'
 import { ChevronUpIcon } from '@heroicons/react/20/solid'
@@ -13,9 +14,12 @@ const Home = () => {
 
     return (
       <>
-    <div className="flex items-centermx-auto justify-center h-80 py-6 bg-gray-200">
-      <div className="max-w-md p-6 border-yellow-100 bg-wow rounded-lg shadow-md">
-        <h1 className="text-4xl font-bold text-purple-700 mb-3 font-meroFont ">
+        <div className=" items-center mx-auto justify-center h-80 py-6 bg-gray-200 relative mt-2">
+          <h3 className='font-meroFont text-center text-4xl mb-6 text-purple-500 mt-6'>Welcome <em>ĸαямα</em> </h3>
+        <img src={hlogo}alt='bgimg' className='mb-4 sm:8/12 w-8/12 rounded-md items-center mx-auto' />
+      <div className="max-w-md mt-16 p-6 border-yellow-100 bg-wow rounded-lg shadow-md mx-auto">
+            <h1 className="text-4xl font-bold text-purple-700 mb-3 font-meroFont ">
+              
           Hello, World !!
         </h1>
         <Transition
@@ -38,12 +42,12 @@ const Home = () => {
          
     </div>
 
-<div className="w-full px-4 pt-16">
+<div className="w-full px-4 bottom-0 mt-16">
 <div className="mx-auto w-full max-w-md rounded-2xl bg-white p-2">
   <Disclosure>
     {({ open }) => (
       <>
-        <Disclosure.Button className="flex w-full justify-between rounded-lg bg-purple-100 px-4 py-2 text-left text-sm font-medium text-purple-900 hover:bg-purple-200 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75">
+        <Disclosure.Button className="mt-96 md:mt-60 flex w-full justify-between rounded-lg bg-purple-100 px-4 py-2 text-left text-sm font-medium text-purple-900 hover:bg-purple-200 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75">
           <span>Who we are</span>
           <ChevronUpIcon
             className={`${
