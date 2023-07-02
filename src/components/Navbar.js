@@ -45,7 +45,7 @@ const Navbar = () => {
       </div>
       <div className="hidden md:flex space-x-4 ">
         <div className="w-40 h-12 bg-gray-800 rounded-full flex items-center justify-center cursor-pointer hover:bg-slate-700">
-          <Link to='/' className='flex justify-center items-center gap-1'>
+          <Link to='/add' className='flex justify-center items-center gap-1'>
             <span className=''>Home </span><FiHome className="" />
             </Link>
           </div>
