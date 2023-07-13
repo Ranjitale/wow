@@ -4,9 +4,11 @@ import { useState } from 'react';
 import {  ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+import { useNavigate } from 'react-router-dom';
 import { collection, addDoc } from 'firebase/firestore';
 import { db } from './firebase';
 function Add() {
+    const navigate=useNavigate()
     const [title,setTitle]=useState("")
     const [content,setContent]=useState("")
     const Add=async()=>{
@@ -18,14 +20,15 @@ function Add() {
                 createdAt: new Date()
             
             });
-            console.log(docRef)
-            console.log("Code has been added sucessfully!")
+            
             toast.success('Item added successfully!', {
-                position: 'bottom-right',
-                autoClose: 3000, // Duration for the toast to be displayed (in milliseconds)
+                position: 'top-right',
+                autoClose: 2000, // Duration for the toast to be displayed (in milliseconds)
             });
             setTitle("");
             setContent("");
+            navigate(`/blogs/${docRef.id}`)
+
         } catch (e) {
             toast.error("Errod adding the code!")
         }
