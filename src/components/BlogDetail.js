@@ -40,14 +40,14 @@ const BlogDetails = () => {
         <img src='https://images.unsplash.com/photo-1624561261145-351e786934b9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80' alt="Profile" className="rounded-full w-16 h-6" />
       </div>
       <h1 className="text-3xl mt-4 font-bold text-white">By:{blog.author}</h1>
-      <div className="bg-white rounded-lg p-8 mt-8 max-w-2xl">
+      <div className="bg-cyan-50 w-4/5 rounded-lg p-8 mt-8 max-w-2xl">
         <h2 className="text-2xl font-bold mb-4 text-gray-800">{blog.title}</h2>
         <div className="prose text-gray-700">
           <p>
             {blog.content}
           </p>
           
-      <h4>{formattedDate}</h4>
+      <h4 className='text-sm text-purple-500'>{formattedDate}</h4>
         </div>
       </div>
     </div>
