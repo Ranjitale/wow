@@ -4,9 +4,10 @@ import { db } from './firebase';
 import { formatDistanceToNow } from 'date-fns';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-
+import { UserAuth } from './context/Authcontext';
 export default function Blogs() {
   const [blogs, setBlogs] = useState(null);
+  const {isMenuOpen} = UserAuth();
 
   const maxLength = 30;
 
@@ -34,7 +35,7 @@ export default function Blogs() {
   }
 
   return (
-    <div className="w-full font-meroFont text-gray-700 mx-auto max-w-md px-2 py-16 sm:px-0">
+    <div className={`w-full font-meroFont text-gray-700 mx-auto max-w-md px-2 py-16 sm:px-0 ${isMenuOpen?"blur-sm":""}`}>
       <Tab.Group>
         <Tab.List className="flex space-x-1 rounded-xl bg-blue-900/20 p-1"></Tab.List>
         <div>

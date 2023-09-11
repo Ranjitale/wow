@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { AiOutlineSearch } from 'react-icons/ai';
-
+import { UserAuth } from './context/Authcontext';
 import { db } from './firebase';
 import { useNavigate } from 'react-router-dom';
 
@@ -11,6 +11,7 @@ const Search = () => {
   const [q, setQuery] = useState('');
   const [loading, setLoading] = useState(false);
   const [results, setResults] = useState([]);
+  const {isMenuOpen} = UserAuth();
 
   
   const handleChangeInput = (e) => {
@@ -47,13 +48,13 @@ const Search = () => {
 
   return (
     <>
+    <hr className='border-teal-100'></hr>
       <form
         onSubmit={(e) => {
           e.preventDefault();
         }}
-        className="flex items-center justify-center py-3 "
-      >
-        <div className="max-w-md w-96 mx-auto ">
+        className={`flex items-center justify-center py-1 bg-teal-50 ${isMenuOpen?"backdrop-blur-sm blur-sm ":""}`}      >
+        <div className="max-w-md w-80 mx-auto ">
           <div className="flex border border-gray-300 rounded-md shadow-xl hover:border-blue-400">
             <input
               type="text"

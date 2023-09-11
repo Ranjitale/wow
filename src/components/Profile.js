@@ -3,7 +3,7 @@ import { UserAuth } from './context/Authcontext';
 import { GoogleButton } from 'react-google-button';
 import {GoSignOut} from 'react-icons/go'
 function Profile() {
-    const { googleSignin,user ,signout} = UserAuth();
+    const { googleSignin,user ,signout,isMenuOpen} = UserAuth();
     const handleGoogleSignin = async () => {
         try {
             await googleSignin();
@@ -13,7 +13,7 @@ function Profile() {
         }
     }
   return (
-      <div className='mx-auto relative py-4 '>
+      <div className={`mx-auto relative py-4 ${isMenuOpen?"backdrop-blur blur-md":""}`}>
         {user ? (
 
   <div className="container mx-auto py-8">

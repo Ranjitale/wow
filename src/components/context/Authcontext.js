@@ -5,6 +5,7 @@ import {auth} from '../firebase'
 const AuthContext = createContext();
 export const AuthContextProvider = ({ children }) => {
     const [user, setUser] = useState({})
+    const [isMenuOpen,setIsMenuOpen]=useState(false)
      useEffect(() => {
         const random = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser)
@@ -24,7 +25,7 @@ export const AuthContextProvider = ({ children }) => {
     }
     
     return (
-        <AuthContext.Provider value={{googleSignin,user,setUser,signout}}>
+        <AuthContext.Provider value={{googleSignin,user,setUser,signout,isMenuOpen,setIsMenuOpen}}>
             {children}
         </AuthContext.Provider>
     )
