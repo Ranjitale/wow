@@ -41,7 +41,7 @@ const Navbar = () => {
       
       <div>
         <div className="flex items-center">
-          <div className="w-16 h-10 relative top-0 text-green-700 font-bold">
+          <div className="w-16 h-4 relative top-0 text-green-700 font-bold">
             <Link to="/" className="flex items-center">
               <img src={hlogo} alt="logo" className="w-16" />
               <span className="h-8">SwingToof</span>
@@ -51,7 +51,7 @@ const Navbar = () => {
       </div>
       </div>
       <div className="hidden md:flex space-x-4 ">
-        <div className="w-40 h-10 top-0 rounded-full flex items-center justify-center cursor-pointer text-green-800 hover:text-blue-700">
+        <div className="w-40 h-4 top-0 rounded-full flex items-center justify-center cursor-pointer text-green-800 hover:text-blue-700">
           <Link to='/add' className='flex justify-center items-center gap-1 font-bold '>
             <span className=''>Home </span>
            </Link>
@@ -61,7 +61,7 @@ const Navbar = () => {
             setIsMenuOpen(false)}
              to='/notes'>
           <div className="hidden md:flex space-x-4">
-        <div className="w-40 h-10 top-0 rounded-full flex items-center justify-center  cursor-pointer text-green-800 hover:text-blue-700 gap-1" >
+        <div className="w-40 h-4 top-0 rounded-full flex items-center justify-center  cursor-pointer text-green-800 hover:text-blue-700 gap-1" >
         <span className='font-bold'>Notes </span>
             </div>
             </div>
@@ -70,7 +70,7 @@ const Navbar = () => {
             setIsMenuOpen(false)} to="/blogs" className="navbar-button">
           
           <div className="hidden md:flex space-x-4">
-        <div className="w-40 h-10 top-0 rounded-full flex items-center justify-center  cursor-pointer text-green-800 hover:text-blue-700 gap-1">
+        <div className="w-40 h-4 top-0 rounded-full flex items-center justify-center  cursor-pointer text-green-800 hover:text-blue-700 gap-1">
         <span className='font-bold'>Blogs </span>
             </div>
             </div>
@@ -80,7 +80,7 @@ const Navbar = () => {
             setIsMenuOpen(false)} to="/profile" className="navbar-button">
         
           <div className="hidden md:flex space-x-4">
-        <div className="w-40 h-10 top-0 rounded-full flex items-center justify-center  cursor-pointer text-green-800 hover:text-blue-700 font-bold gap-1">
+        <div className="w-40 h-4 top-0 rounded-full flex items-center justify-center  cursor-pointer text-green-800 hover:text-blue-700 font-bold gap-1">
         <span className=''>Profile </span>
             </div>
             </div>
