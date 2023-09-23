@@ -1,9 +1,8 @@
-
-      import React, {  useEffect, useRef } from 'react';
+import React, {  useEffect, useRef } from 'react';
 import hlogo from '../img/image_processing20210904-18191-l0cdje.gif';
 import { Link } from 'react-router-dom';
 import { UserAuth } from './context/Authcontext';
-import {GiCrossedBones} from 'react-icons/gi'
+import {RiBarChartHorizontalLine} from 'react-icons/ri'
 const Navbar = () => {
   const {isMenuOpen, setIsMenuOpen} = UserAuth();
   const menuRef = useRef(null);
@@ -30,7 +29,7 @@ const Navbar = () => {
 
   return (
     <nav  ref={menuRef}
-      className={`relative z-50 font-myFont flex justify-between items-center md:py-4 md:px-8 bg-white text-white ${
+      className={`relative z-50 font-myFont flex justify-between items-center md:py-0 md:px-8 bg-white text-white ${
         isMenuOpen ? '' : ''
       }`}
     >
@@ -41,10 +40,16 @@ const Navbar = () => {
       
       <div>
         <div className="flex items-center">
-          <div className="w-16 h-4 relative top-0 text-green-700 font-bold">
+          <div className="flex   relative top-0 text-green-700 font-bold">
             <Link to="/" className="flex items-center">
+              <div>
               <img src={hlogo} alt="logo" className="w-16" />
+              </div>
+              <div>
               <span className="h-8">SwingToof</span>
+
+              </div>
+              
             </Link>
           </div>
         </div>
@@ -92,24 +97,13 @@ const Navbar = () => {
           onClick={toggleMenu}
           aria-label="Toggle Menu"
         >
-          <svg
-            className="w-6 h-6"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <path d="M4 6h16M4 12h16M4 18h16"></path>
-          </svg>
+          <RiBarChartHorizontalLine/>
         </button>
         {isMenuOpen && (
           <div className={`absolute  top-24 right-0 z-20 bg-gray-700 w-72 py-2 rounded-sm  shadow-lg`}>
             <button onClick ={toggleMenu} className='text-green-400 float-right mx-6 '>
-              <GiCrossedBones/>
-            </button>
+
+X            </button>
 
               <Link onClick={()=>
             setIsMenuOpen(false)} to="/" className="w-full flex items-center space-x-2 px-4 py-2">
@@ -143,105 +137,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
-/*
-import React from 'react';
-import { useEffect,useRef } from 'react';
-import hlogo from '../img/image_processing20210904-18191-l0cdje.gif'
-import { Link } from 'react-router-dom';
-
-
-const Navbar = () => {
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-  const menuRef = useRef(null)
-
-  const toggleMenu = () => {
-      setIsMenuOpen(!isMenuOpen);
-      
-  };
-  useEffect(() => {
-   
-    const handleClickOutside = (event) => {
-      if (menuRef.current && !menuRef.current.contains(event.target)) {
-        setIsMenuOpen(false);
-      }
-    };
-
-   
-    if (isMenuOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
-    }
-
-    
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [isMenuOpen]);
-
-  return (
-    <nav ref={menuRef} className={`${isMenuOpen?" blur-lg  relative z-50 font-myFont flex justify-between items-center md:py-4 md:px-8 bg-white text-white":"font-myFont flex justify-between items-center md:py-4 md:px-8 bg-white text-white"} `}>
-
-      <div>
-        <div className="flex items-center">
-          <div className="w-16 h-16 relative top-5 text-green-700 font-bold">
-          <Link to="/" className='flex items-center'>
-            <img src={hlogo} alt='logo' className='w-16'></img><span className='h-8'>SwingToof</span></Link>
-          </div>
-        </div>
-      </div>
-      // 
-      <div className="md:hidden">
-        <button
-          className="navbar-button items-center text-gray-700 my-6 p-2"
-          onClick={toggleMenu}
-          aria-label="Toggle Menu"
-        >
-          <svg
-            className="w-6 h-6"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <path d="M4 6h16M4 12h16M4 18h16"></path>
-          </svg>
-        </button>
-        {isMenuOpen && (
-          <div className={`${isMenuOpen?"blur-none absolute top-14 right-0 z-20 bg-gray-500 w-40 py-2 rounded-lg shadow-lg":" blur-none absolute top-14 right-0 z-20 bg-gray-500 w-40 py-2 rounded-lg shadow-lg"}`}>
-            
-              <Link onClick={()=>
-            setIsMenuOpen(false)} to="/" className="w-full flex items-center space-x-2 px-4 py-2">
-                <span>Home</span>
-              </Link>
-          
-            
-              <Link onClick={()=>
-            setIsMenuOpen(false)}  to="/notes" className="w-full flex items-center space-x-2 px-4 py-2">
-                <span>Notes</span>
-             
-            </Link>
-          
-              <Link onClick={()=>
-            setIsMenuOpen(false)}  to="/blogs" className="w-full flex items-center space-x-2 px-4 py-2">
-                <span>Blogs </span>
-            
-            </Link>
-            
-              <Link  onClick={()=>
-            setIsMenuOpen(false)} to="/profile"className="w-full flex items-center space-x-2 px-4 py-2 ">
-                 <span>Profile</span>
-             
-            </Link>
-          </div>
-        )}
-      </div>
-      
-    </nav>
-  );
-};
-
-export default Navbar;
-// how to blur the bg when the toggle button is on and only the list is not blur*/

@@ -23,7 +23,8 @@ const Search = () => {
     event.preventDefault();
 
     const collection_ref = collection(db, 'blogs');
-    const searchedQuery = query(collection_ref, where('title', '>=', q), where('title', '<=', `${q}\uf8ff`));
+    
+    const searchedQuery = query(collection_ref, where("lowerCaseTitle", '==', q.toLocaleLowerCase()), where("lowerCaseTitle", '==', `${q.toLocaleLowerCase()}\uf8ff`));
     const doc_refs = await getDocs(searchedQuery);
     const res = [];
 
@@ -48,28 +49,29 @@ const Search = () => {
 
   return (
     <>
-    <hr className='border-teal-100'></hr>
+    <hr className='b'></hr>
       <form
         onSubmit={(e) => {
           e.preventDefault();
         }}
-        className={`flex items-center justify-center py-1 bg-teal-50 ${isMenuOpen?"backdrop-blur-sm blur-sm ":""}`}      >
+        className={` bg-gray-50 flex items-center justify-center py-2${isMenuOpen?"backdrop-blur-sm blur-sm ":""}`}      >
         <div className="max-w-md w-80 mx-auto ">
-          <div className="flex border border-gray-300 rounded-md shadow-xl hover:border-blue-400">
+          <div className="flex rounded-full border-gray-800 shadow-xl ">
             <input
               type="text"
               value={q}
               onChange={handleChangeInput}
-              className="px-4 py-2 w-full text-gray-700 focus:outline-none md:w-80"
+              className="px-4 py-2 w-full text-gray-700 border-gray-700  rounded-full outline-none font-mulish  md:w-80"
               placeholder="Search"
             />
-            <div className="p-2">
+            <div className="p-2 px-4 ">
               <button onClick={handleSearch} type="submit">
                 <AiOutlineSearch />
               </button>
             </div>
           </div>
         </div>
+        
       </form>
       {loading && (<div className="flex items-center justify-center mt-4">
           <div className="animate-spin rounded-full h-8 w-8 border-b-4 border-green-900"></div>

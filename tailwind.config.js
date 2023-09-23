@@ -13,7 +13,8 @@ module.exports = {
       },
       fontFamily: {
         myFont: ['Poppins', 'sans-serif'],
-        meroFont:['Fredoka', "sans-serif"]
+        meroFont:['Fredoka', "sans-serif"],
+        mulish:['Mulish',"sans-serif"]
         // Add more font families as needed
       },
     },

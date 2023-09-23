@@ -1,4 +1,3 @@
-
 import { Tab } from '@headlessui/react';
 import { formatDistanceToNow } from 'date-fns';
 import { collection, getDocs } from 'firebase/firestore';
@@ -70,4 +69,3 @@ export default function Notes() {
       </>
   );
 }
-

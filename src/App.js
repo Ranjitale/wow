@@ -8,10 +8,10 @@ import Profile from './components/Profile';
 import Home from './components/Home';
 import Search from './components/Search';
 import Add from './components/Add';
+// import Add1 from './components/duplicate';
 import BlogDetails from './components/BlogDetail';
 import NoteDetail from './components/NoteDetail';
 import Results from './components/results';
-
 function App() {
   return (
     <AuthContextProvider>
