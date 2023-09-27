@@ -25,7 +25,7 @@ function Profile() {
               <h1 className='text-center '>{user.emailVerified?"Verified":"UnAuthenticated"}</h1>
       <div className="flex justify-center mt-4">
         <button
-          className="flex text-center align-middle px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 font-myFont text-xl"
+          className="flex text-center items-center align-middle px-4 py-3 bg-red-500 text-white rounded hover:bg-red-600 font-myFont text-xl"
           onClick={signout}
         >
           <GoSignOut/><span className='relative -top-1'>Logout</span>

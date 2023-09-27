@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { UserAuth } from './context/Authcontext';
 import  supabase  from './supabase';
 import { formatDistanceToNow } from 'date-fns';
-import profile from '../img/anonymous-profile-old-style-glasses-hat-design-vector-27628582.webp';
+// import profile from '../img/anonymous-profile-old-style-glasses-hat-design-vector-27628582.webp'
 
 const maxLength = 50; // Maximum content length
 
@@ -78,7 +78,7 @@ export default function Blogs() {
             <h2 className='text-2xl font-bold mb-4 font-mulish hover:scale-100 '>{ (blog.title)}</h2>
             <div className='flex items-center mb-4'>
               <img
-                src={blog.photoURL || profile}
+                src={blog.photoURL===null? "https://profileme.app/wp-content/uploads/2021/01/cropped-ProfileMe-06.jpg":blog.photoURL}
                 alt='author'
                 width={50}
                 height={50}
@@ -94,10 +94,10 @@ export default function Blogs() {
             
             <div>
             <button
-  type="button"
-  className="inline-block rounded bg-neutral-800 px-6 my-3 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-neutral-50 shadow-[0_4px_9px_-4px_rgba(51,45,45,0.7)] transition duration-150 ease-in-out hover:bg-neutral-800 hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:bg-neutral-800 focus:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:outline-none focus:ring-0 active:bg-neutral-900 active:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] dark:bg-neutral-900 dark:shadow-[0_4px_9px_-4px_#030202] dark:hover:bg-neutral-900 dark:hover:shadow-[0_8px_9px_-4px_rgba(3,2,2,0.3),0_4px_18px_0_rgba(3,2,2,0.2)] dark:focus:bg-neutral-900 dark:focus:shadow-[0_8px_9px_-4px_rgba(3,2,2,0.3),0_4px_18px_0_rgba(3,2,2,0.2)] dark:active:bg-neutral-900 dark:active:shadow-[0_8px_9px_-4px_rgba(3,2,2,0.3),0_4px_18px_0_rgba(3,2,2,0.2)]">
-  Read More ...
-</button>
+          type="button"
+          className="inline-block rounded bg-neutral-800 px-6 my-3 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-neutral-50 shadow-[0_4px_9px_-4px_rgba(51,45,45,0.7)] transition duration-150 ease-in-out hover:bg-neutral-800 hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:bg-neutral-800 focus:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:outline-none focus:ring-0 active:bg-neutral-900 active:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] dark:bg-neutral-900 dark:shadow-[0_4px_9px_-4px_#030202] dark:hover:bg-neutral-900 dark:hover:shadow-[0_8px_9px_-4px_rgba(3,2,2,0.3),0_4px_18px_0_rgba(3,2,2,0.2)] dark:focus:bg-neutral-900 dark:focus:shadow-[0_8px_9px_-4px_rgba(3,2,2,0.3),0_4px_18px_0_rgba(3,2,2,0.2)] dark:active:bg-neutral-900 dark:active:shadow-[0_8px_9px_-4px_rgba(3,2,2,0.3),0_4px_18px_0_rgba(3,2,2,0.2)]">
+          Read More ...
+        </button>
             </div>
             <div className='text-green-600'>
               {formatDistanceToNow(new Date(blog.created_at), { addSuffix: true })}

@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { UserAuth } from './context/Authcontext';
-import { db } from './firebase';
 import { useNavigate } from 'react-router-dom';
-
-import { getDocs, collection, where, query } from 'firebase/firestore';
+import supabase from './supabase';
 
 const Search = () => {
   const navigate = useNavigate();
@@ -22,29 +20,20 @@ const Search = () => {
     setLoading(true);
     event.preventDefault();
 
-    const collection_ref = collection(db, 'blogs');
+    const { data, error } = await supabase.from('blogs').select().textSearch('title', q);
     
-    const searchedQuery = query(collection_ref, where("lowerCaseTitle", '==', q.toLocaleLowerCase()), where("lowerCaseTitle", '==', `${q.toLocaleLowerCase()}\uf8ff`));
-    const doc_refs = await getDocs(searchedQuery);
-    const res = [];
+    if (error) {
+      <div> Not found</div>
+    } else {
+      setResults(data);
+    }
 
-    doc_refs.forEach((blog) => {
-      res.push({
-        id: blog.id,
-        ...blog.data(),
-      });
-    });
-
-    setResults(res);
-    navigate(`/search?q=${encodeURIComponent(q)}`, { state: { results: results } });
+    setResults(data);
+    navigate(`/search?q=${encodeURIComponent(q)}`, { state: { results: data||results } });
     setLoading(false);
     
   };
-  if (!results) {
-    return <div className='mx-auto text-center
-    font-meroFont text-5xl text-blue-500'>Loading...</div>;
-  
-}
+
 
 
   return (

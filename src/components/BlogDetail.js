@@ -107,7 +107,7 @@ setLiked(false)
     <div className="flex flex-col items-center bg-gradient-to-r bg-gray-500 min-h-screen">
       <ToastContainer autoClose={3000}position='top-center' />
     <div className="w-32 h-16 rounded-full mt-8">
-      <img src={blog.photoURL===null?"https://www.shutterstock.com/shutterstock/photos/1850222983/display_1500/stock-vector-anonymous-vector-icon-incognito-sign-privacy-concept-human-head-with-glitch-face-personal-data-1850222983.jpg":blog.photoURL} alt="Profile" className="rounded-full" />
+      <img src={blog.photoURL===""?"https://www.shutterstock.com/shutterstock/photos/1850222983/display_1500/stock-vector-anonymous-vector-icon-incognito-sign-privacy-concept-human-head-with-glitch-face-personal-data-1850222983.jpg":blog.photoURL} alt="Profile" className="rounded-full" />
     </div>
     <h1 className="text-3xl mt-4 font-bold text-white">By:{blog.author}</h1>
     <div className="bg-cyan-50 w-4/5 rounded-lg p-8 mt-8 max-w-2xl">
