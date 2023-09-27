@@ -14,7 +14,7 @@ const Results = () => {
       {results === null? <div className='text-center text-purple-500 text-3xl'>Not found...</div>:results.map((note) => 
           
           (
-            <div key={note.id} className="bg-white rounded-lg md:w-8/12 m-auto shadow-lg p-3 mb-6 ml-3 w-11/12">
+            <div key={note.id} className="bg-white rounded-lg md:w-8/12 m-auto shadow-lg p-3 my-4 w-11/12">
             
               <Link to={`/blogs/${note.id}`}>
                 <h2 className="text-2xl font-bold mb-4">{note.title}</h2>
